@@ -20,6 +20,7 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter'
 	compileOnly 'org.projectlombok:lombok'
 	implementation 'org.apache.pdfbox:pdfbox:2.0.27'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
