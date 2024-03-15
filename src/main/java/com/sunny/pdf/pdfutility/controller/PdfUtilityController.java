@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -20,9 +21,15 @@ public class PdfUtilityController {
     PdfUtilityService service;
 
     @GetMapping("/sayHello")
-    public String sayHello() {
-        log.info("message received!!");
-            return "Hi, there";
+    public Map<String, List<String>> sayHello() {
+        log.info("message received for hashMap!!");
+        return service.hasMap();
+    }
+
+    @GetMapping("/sayHello2")
+    public List<String> sayHello2() {
+        log.info("message received for hashMap2!!");
+        return service.hasMap2();
     }
 
     @PostMapping(value = "/pdfsmerge", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})

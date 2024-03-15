@@ -7,4 +7,24 @@ spring:
     name: pdfutility
   server:
     port: 8080
+try:
+  channels:
+    AFS-IB:
+      - asdf2erasdf-1
+      - 3894923-2
+      - 23423fasdfa -3
+    AFS-MIB:
+      - mibasdfas-1
+      - mibqwerqwer-2
 
+channels2:
+  AFS-IB:
+    - asdf2erasdf-1
+    - 3894923-2
+    - 23423fasdfa -3
+  AFS-MIB:
+    - mibasdfas-1
+    - mibqwerqwer-2
+
+test:
+  testing: hello
