@@ -1,6 +1,8 @@
 package com.sunny.pdf.pdfutility.code;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Caterpillar {
 
@@ -71,6 +73,37 @@ public class Caterpillar {
             }
         }
         return best;
+    }
+
+    public int absDistinct(int[] a) {
+        if (a == null || a.length <= 0) {
+            return 0;
+        }
+
+        Set<Integer> integerSet = new HashSet<>();
+
+        for (int x: a) {
+            integerSet.add(x);
+        }
+
+        return  (int) integerSet.stream().map(Math::abs).distinct().count();
+    }
+
+    public int countDistinctSlices(int M, int[] a) { //todo - not working
+        if (a == null || a.length <= 1) {
+            return 0;
+        }
+        int count = 0;
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a.length; j++) {
+                System.out.println(a[i] + " and a[j] " + a[j]);
+                if (a[i] != a[j]) {
+                    System.out.println( " inside" );
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
 }

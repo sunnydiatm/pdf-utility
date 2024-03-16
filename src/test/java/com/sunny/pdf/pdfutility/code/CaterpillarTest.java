@@ -35,4 +35,20 @@ public class CaterpillarTest {
 
     }
 
+    @Test
+    public void testSolution3() {
+
+        int[] A2 = {-5, -3, -1, 0, 3, 6};
+        assertEquals(5, caterpillar.absDistinct(A2));
+
+    }
+
+    @Test
+    public void testSolution4() {
+
+        int[] A2 = {3, 4, 5, 5, 2};
+        assertEquals(9, caterpillar.countDistinctSlices(6, A2));
+
+    }
+
 }
