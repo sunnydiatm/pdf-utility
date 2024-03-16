@@ -1,5 +1,8 @@
 package com.sunny.pdf.pdfutility.code;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Youtube {
 
     public int minimumCoinFlip(int[] A) {
@@ -42,5 +45,22 @@ public class Youtube {
 
         return deletions;
 
+    }
+
+    public int smallestPositiveInteger(int[] A) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : A) {
+            if (num > 0) {
+                set.add(num);
+            }
+        }
+
+        for (int i = 1; i <= A.length + 1; i++) {
+            if (!set.contains(i)) {
+                return i;
+            }
+        }
+
+        return -1; // Should never reach here
     }
 }

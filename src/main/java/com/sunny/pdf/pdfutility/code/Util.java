@@ -24,9 +24,9 @@ public class Util {
         /*int result = fibonacci(10);
         System.out.println("Fibonacci Result=>" + result);*/
 
-        int[] A1 = {-5, -3, -1, 0, 3, 6, -6, 8};
+       /* int[] A1 = {-5, -3, -1, 0, 3, 6, -6, 8};
         int a = absDistinct(A1);
-        System.out.println("absDistinct=>" + a);
+        System.out.println("absDistinct=>" + a);*/
 
        /* int rows = 4;
         int column = 4;
@@ -47,6 +47,74 @@ public class Util {
             System.out.println();
         }*/
 
+        /*int fac = factorial(5);
+        System.out.println("factorial=>" + fac);*/
+
+       /* printTriangle(4);*/
+
+        System.out.println("reverseString=" + reverseString("1234321"));
+
+    }
+
+    public static String reverseString(String str) {
+
+        char[] stringToCharArr = str.toCharArray();
+        char[] temp = new char[stringToCharArr.length];
+        int j =0;
+        for (int i = stringToCharArr.length - 1 ; i >= 0  ; i--) {
+            temp[j] = stringToCharArr[i];
+            j++;
+        }
+
+        return String.valueOf(temp);
+
+    }
+
+    public static void printTriangle(int a) {
+
+        for (int i = 0; i < a; i++) {
+            for (int j = 0 ; j <= i; j++) {
+                System.out.print(" * ");
+            }
+            System.out.println();
+        }
+
+        System.out.println("reverse triangle");
+
+        for (int i = 0; i < a; i++) {
+            for (int j = 0 ; j < a - i; j++) {
+                System.out.print(" * ");
+            }
+
+            System.out.println();
+        }
+
+        System.out.println("up side down symetrical triangle");
+
+        for (int i = a; i > 0; i--) {
+            for (int j = 0 ; j < a - i; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 0 ; k < 2 * i - 1; k++) {
+                System.out.print("*");
+            }
+
+            System.out.println();
+        }
+    }
+
+    public static int factorial(int a) {
+
+        if (a ==0 || a==1) {
+            return 1;
+        }
+
+        int factorial = 1;
+        for (int i = 1 ; i <= a ; i++) {
+            factorial = factorial * i;
+        }
+
+        return factorial;
     }
 
     public static boolean isPalindrome(String str) {

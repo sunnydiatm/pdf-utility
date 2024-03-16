@@ -28,4 +28,12 @@ public class YoutubeTest {
         assertEquals(3, youtube.letterOccurrence("BBBABAA"));
         assertEquals(0, youtube.letterOccurrence("AABBBB"));
     }
+
+    @Test
+    public void testSolution3() {
+
+        assertEquals(5, youtube.smallestPositiveInteger(new int[]{1, 3, 6, 4, 1, 2}));
+        assertEquals(1, youtube.smallestPositiveInteger(new int[]{-1, -3, -6}));
+        assertEquals(4, youtube.smallestPositiveInteger(new int[]{1, 2, 3}));
+    }
 }
