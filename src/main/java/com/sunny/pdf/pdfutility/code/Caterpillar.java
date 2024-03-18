@@ -89,21 +89,32 @@ public class Caterpillar {
         return  (int) integerSet.stream().map(Math::abs).distinct().count();
     }
 
-    public int countDistinctSlices(int M, int[] a) { //todo - not working
-        if (a == null || a.length <= 1) {
-            return 0;
-        }
-        int count = 0;
-        for (int i = 0; i < a.length; i++) {
-            for (int j = 0; j < a.length; j++) {
-                System.out.println(a[i] + " and a[j] " + a[j]);
-                if (a[i] != a[j]) {
-                    System.out.println( " inside" );
-                    count++;
-                }
+    public int countDistinctSlices(int M, int[] A) {
+        int N = A.length;
+        int distinctSlices = 0;
+        Set<Integer> set = new HashSet<>();
+
+        int left = 0;
+        for (int right = 0; right < N; right++) {
+            while (set.contains(A[right])) {
+                set.remove(A[left]);
+                left++;
+            }
+            set.add(A[right]);
+            distinctSlices += (right - left + 1);
+            if (distinctSlices > 1_000_000_000) {
+                return 1_000_000_000;
             }
         }
-        return count;
+
+        return distinctSlices;
+    }
+
+    public static void main(String[] args) {
+        Caterpillar solution = new Caterpillar();
+        int M = 6;
+        int[] A = {3, 4, 5, 5, 2};
+        System.out.println(solution.countDistinctSlices(M, A)); // Output: 9
     }
 
 }

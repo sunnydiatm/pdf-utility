@@ -8,7 +8,7 @@ public class ArrayEqualizer {
 
     private static final int size = 100;
 
-    public static int equalizeArray(List<Integer> list) { // todo - tested and working
+    public static int equalizeArray(List<Integer> list) {
         // Write your code here
 
         Map<Integer, Integer> frequencyMap = new HashMap<>();
