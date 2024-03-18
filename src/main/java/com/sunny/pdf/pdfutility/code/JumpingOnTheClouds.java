@@ -35,7 +35,7 @@ public class JumpingOnTheClouds {
         return jumps;
     }
 
-    public static int jumpingOnClouds(List<Integer> c) { // todo - tested and working
+    public static int jumpingOnClouds(List<Integer> c) {
         // Write your code here
         int jumps = 0;
         int i     = 0;

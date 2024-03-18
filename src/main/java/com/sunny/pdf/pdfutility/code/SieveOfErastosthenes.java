@@ -37,49 +37,6 @@ public class SieveOfErastosthenes {
         return result;
     }
 
-    public int[] solution(int N, int[] P, int[] Q) { // todo - not working
-        boolean[] sieve = new boolean[N + 1];
-        List<Integer> semiprimes = new ArrayList<>();
-        List<Integer> prefixCount = new ArrayList<>();
-        int[] result = new int[P.length];
-
-        // Sieve of Eratosthenes to find prime numbers up to N
-        for (int i = 2; i * i <= N; i++) {
-            if (!sieve[i]) {
-                for (int j = i * i; j <= N; j += i) {
-                    sieve[j] = true;
-                }
-            }
-        }
-
-        // Generate semiprime numbers
-        for (int i = 2; i <= N; i++) {
-            if (!sieve[i]) {
-                for (int j = i; j <= N; j += i) {
-                    if (!sieve[j / i]) {
-                        semiprimes.add(j);
-                    }
-                }
-            }
-        }
-
-        // Calculate prefix sum of semiprimes
-        int count = 0;
-        for (int i = 0; i <= N; i++) {
-            if (semiprimes.contains(i)) {
-                count++;
-            }
-            prefixCount.add(count);
-        }
-
-        // Count semiprimes in the given ranges
-        for (int i = 0; i < P.length; i++) {
-            result[i] = prefixCount.get(Q[i]) - prefixCount.get(P[i] - 1);
-        }
-
-        return result;
-    }
-
     public int[] countSemiPrime(int N, int[] P, int[] Q) {
         int[] F = new int[N+1];
         int f = 2;

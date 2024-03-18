@@ -43,142 +43,42 @@ public class PrimeAndComposite {
         return minPerimeter;
     }
 
-    public int maxFlags(int[] A) { // todo - not working
-        int n = A.length;
-        int[] peaks = new int[n]; // Array to store peaks
-
-        // Identify peaks
-        for (int i = 1; i < n - 1; i++) {
-            if (A[i] > A[i - 1] && A[i] > A[i + 1]) {
-                peaks[i] = 1;
-            }
-        }
-
-        // Calculate prefix sums for peaks
-        int[] prefixSums = new int[n];
-        prefixSums[0] = peaks[0];
-        for (int i = 1; i < n; i++) {
-            prefixSums[i] = prefixSums[i - 1] + peaks[i];
-        }
-
-        int maxFlags = 0;
-
-        // Perform binary search to find maximum possible distance between flags
-        for (int d = 1; d <= n; d++) {
-            int flags = 0;
-            int pos = 0;
-
-            while (pos < n && flags < d) {
-                pos = findNextPeak(pos, prefixSums, d);
-                if (pos < n) {
-                    flags++;
-                    pos += d;
-                }
-            }
-
-            maxFlags = Math.max(maxFlags, flags);
-        }
-
-        return maxFlags;
-    }
-
-    private int findNextPeak(int startPos, int[] prefixSums, int distance) {
-        int endPos = startPos + distance;
-        if (endPos >= prefixSums.length) {
-            return prefixSums.length;
-        }
-        return prefixSums[endPos] - prefixSums[startPos] > 0 ? endPos : startPos;
-    }
-
-
-    public int maxFlags2(int[] A) { // todo - not working
+    public int maxFlags(int[] A) {
         int N = A.length;
+        int[] peaks = new int[N];
+        int peakCount = 0;
 
-        // Calculate peak positions
-        boolean[] peaks = new boolean[N];
+        // Find all the peaks in the array
         for (int i = 1; i < N - 1; i++) {
             if (A[i] > A[i - 1] && A[i] > A[i + 1]) {
-                peaks[i] = true;
+                peaks[peakCount++] = i;
             }
         }
 
-        int[] next = new int[N];
-        next[N - 1] = -1;
-        for (int i = N - 2; i >= 0; i--) {
-            if (peaks[i]) {
-                next[i] = i;
-            } else {
-                next[i] = next[i + 1];
-            }
+        if (peakCount == 0) {
+            // No peaks found, so no flags can be set
+            return 0;
         }
 
         int result = 0;
-        for (int i = 1; i <= N; i++) {
+        for (int flags = 1; flags <= peakCount; flags++) {
             int pos = 0;
-            int numFlags = 0;
-            while (pos < N && next[pos] != -1) {
-                pos = next[pos];
-                pos += i;
-                numFlags++;
+            int count = 0;
+            while (pos < peakCount && count < flags) {
+                count++;
+                int nextFlag = peaks[pos++] + flags;
+                while (pos < peakCount && peaks[pos] < nextFlag) {
+                    pos++;
+                }
             }
-            result = Math.max(result, numFlags);
+            if (count >= flags) {
+                result = flags;
+            } else {
+                break; // Not enough flags can be set
+            }
         }
 
         return result;
-    }
-
-    public int maxBlocks(int[] A) { // todo - not working
-        int[] nextPeaks = nextPeaks(A);
-
-        int flagNumebr = 1;
-        int result = 0;
-
-        while ((flagNumebr-1)*flagNumebr <= A.length) {
-
-            int flagPos = 0;
-            int flagsTaken = 0;
-
-            while (flagPos < A.length && flagsTaken < flagNumebr) {
-                flagPos = nextPeaks[flagPos];
-
-                if (flagPos == -1) {
-                    // we arrived at the end of the peaks;
-                    break;
-                }
-
-                flagsTaken++;
-                flagPos += flagNumebr;
-            }
-            result = Math.max(result, flagsTaken);
-            flagNumebr++;
-
-        }
-
-        return  result;
-    }
-
-    private boolean[] createPeaks(int[] A) {
-        boolean[] peaks = new boolean[A.length];
-        for (int i = 1; i < A.length-1; i++) {
-            if (A[i - 1] < A[i] && A[i] > A[i + 1]) {
-                peaks[i] = true;
-            }
-        }
-
-        return  peaks;
-    }
-
-    private int[] nextPeaks (int[] A) {
-        boolean[] peaks = createPeaks(A);
-        int[] nextPeaks = new int[A.length];
-        // the last position is always -1
-        nextPeaks[A.length-1] = -1;
-
-        for (int i = A.length-2; i >= 0 ; i--) {
-            nextPeaks[i] = peaks[i] ? i : nextPeaks[i+1];
-        }
-
-        return  nextPeaks;
     }
 
     public int maxFlags3(int[] A) {
@@ -198,7 +98,6 @@ public class PrimeAndComposite {
                 }
             }
         }
-
 
         int size = peaks.size();
         if (size < 2)
@@ -238,7 +137,41 @@ public class PrimeAndComposite {
         return maxFlag;
     }
 
-    public int maxBlocks2(int[] A) { // todo - working
+    private int findNextPeak(int startPos, int[] prefixSums, int distance) {
+        int endPos = startPos + distance;
+        if (endPos >= prefixSums.length) {
+            return prefixSums.length;
+        }
+        return prefixSums[endPos] - prefixSums[startPos] > 0 ? endPos : startPos;
+    }
+
+    private boolean[] createPeaks(int[] A) {
+        boolean[] peaks = new boolean[A.length];
+        for (int i = 1; i < A.length-1; i++) {
+            if (A[i - 1] < A[i] && A[i] > A[i + 1]) {
+                peaks[i] = true;
+            }
+        }
+
+        return  peaks;
+    }
+
+    private int[] nextPeaks (int[] A) {
+        boolean[] peaks = createPeaks(A);
+        int[] nextPeaks = new int[A.length];
+        // the last position is always -1
+        nextPeaks[A.length-1] = -1;
+
+        for (int i = A.length-2; i >= 0 ; i--) {
+            nextPeaks[i] = peaks[i] ? i : nextPeaks[i+1];
+        }
+
+        return  nextPeaks;
+    }
+
+
+
+    public int maxBlocks2(int[] A) {
         // write your code in Java SE 8
         int[] peaks = new int[A.length];
         int peakStart = 0;
