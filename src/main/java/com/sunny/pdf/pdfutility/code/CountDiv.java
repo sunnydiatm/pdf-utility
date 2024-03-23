@@ -3,9 +3,17 @@ package com.sunny.pdf.pdfutility.code;
 public class CountDiv {
 
     public int solution(int A, int B, int K) {
-        int divisibleByKInB = B / K;
-        int divisibleByKInA = (A - 1) / K;
-        return divisibleByKInB - divisibleByKInA;
+        int firstCount =0;
+        int allCount =0;
+        if (B==0)
+            return 1;
+        if (A>1){
+            firstCount = (int)(A-1)/K;
+        }
+        allCount = (int)B/K;
+        if (A==0)
+            allCount++;
+        return allCount-firstCount;
     }
 
     public static void main(String[] args) {

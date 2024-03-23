@@ -2,7 +2,7 @@ package com.sunny.pdf.pdfutility.code;
 
 public class MaximumSliceProblem {
 
-        public int computeMaxEarning(int[] prices) {
+        public int maxProfit(int[] prices) { // todo - 100%
             if (prices == null || prices.length < 2) {
                 return 0; // Cannot earn anything with less than 2 prices
             }
@@ -18,7 +18,7 @@ public class MaximumSliceProblem {
             return maxEarning;
         }
 
-    public int maxSliceSum(int[] A) {
+    public int maxSliceSum(int[] A) { // todo - 100%
         if (A == null || A.length == 0) {
             return 0;
         }
@@ -34,7 +34,7 @@ public class MaximumSliceProblem {
         return maxSum;
     }
 
-    public int maxDoubleSliceSum(int[] A) {
+    public int maxDoubleSliceSum(int[] A) { // todo - 100%
         int[] maxEnding = new int[A.length];
         int[] maxStarting = new int[A.length];
 

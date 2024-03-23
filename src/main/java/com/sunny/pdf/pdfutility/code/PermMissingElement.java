@@ -3,18 +3,34 @@ package com.sunny.pdf.pdfutility.code;
 public class PermMissingElement {
 
     public static int solution(int[] A) {
-        int N = A.length + 1; // Expected length of the array
-        int totalSum = N * (N + 1) / 2; // Sum of integers from 1 to N+1
-        int arraySum = 0;
+        // write your code in Java SE 8
 
-        // Calculate the sum of elements in the given array
-        for (int num : A) {
-            arraySum += num;
+        // Using the concept of "Sum = (ceiling + floor) * height /2"
+        // So---> Sum = (1 + N+1) * N /2
+        // the missing element can be found by minus other elements
+
+        // note: need to use "long" to avoid potential bugs (large numbers)
+        long ceiling = A.length +1;
+        long floor = 1;
+        long height = A.length + 1; // note: need to plus extra "1"
+        // because there is one element "missing"!
+        // be careful about this (important)
+        long sum = (ceiling +floor) * height /2; // main idea
+        /*
+        int high = A.length +1;
+        int low = 1;
+        int height = A.length + 1;
+        int sum = (high +low) * height /2; // main idea
+        */
+        long missing_number = sum; // initial setting (sum)
+
+        for(int i=0; i<A.length; i++){
+            missing_number = missing_number - A[i]; // minus other elements
         }
 
-        // Calculate the missing element
-        return totalSum - arraySum;
+        return (int)missing_number; // return the missing element (long->int)
     }
+
 
     public static void main(String[] args) {
         int[] A = {2, 3, 1, 5}; // Example input array
