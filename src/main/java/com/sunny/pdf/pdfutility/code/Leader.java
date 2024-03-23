@@ -2,7 +2,7 @@ package com.sunny.pdf.pdfutility.code;
 
 public class Leader {
 
-        public int findMajorityIndex(int[] nums) {
+        public int dominator(int[] nums) { // todo - 100%
             int candidate = -1;
             int count = 0;
 
@@ -31,7 +31,7 @@ public class Leader {
 
             return -1; // No majority element found
         }
-        public int equiLeader(int[] A) {
+        public int equiLeader(int[] A) {  // todo - 100%
             int leader = findLeader(A);
             if (leader == -1)
                 return 0; // No leader found, so no equi leaders

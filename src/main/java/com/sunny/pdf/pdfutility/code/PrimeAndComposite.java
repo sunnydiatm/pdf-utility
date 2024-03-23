@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class PrimeAndComposite {
 
-    public int countFactors(int N) {
+    public int countFactors(int N) {  // todo - 92%
         int count = 0;
 
         // Iterate up to square root of n
