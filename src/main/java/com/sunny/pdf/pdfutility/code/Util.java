@@ -59,7 +59,10 @@ public class Util {
 
         //System.out.println(birthdayCakeCandles(List.of(4,4,1,3)));
 
-        System.out.println("Time conversion result=" + timeConversion("07:05:45PM"));
+        //System.out.println("Time conversion result=" + timeConversion("07:05:45PM"));
+
+        int[] minMax = {-100, 2, 3, 4, 7000, 7, 9, 8, 10};
+        findMinAndMaxElement(minMax);
     }
 
     public static int hurdleRace(int k, List<Integer> height) {
@@ -76,6 +79,21 @@ public class Util {
         }
         return hurdleCount;
 
+    }
+
+    public static void findMinAndMaxElement(int[] arr) {
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for (int j : arr) {
+            if (max < j) {
+                max = j;
+            }
+            if (min > j) {
+                min = j;
+            }
+        }
+
+        System.out.println("Min=" + min + " and Max=" + max);
     }
 
     public static List<Integer> climbingLeaderboard(List<Integer> al1, List<Integer> al2) {
