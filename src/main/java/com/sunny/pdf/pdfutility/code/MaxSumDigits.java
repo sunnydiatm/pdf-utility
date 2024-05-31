@@ -2,28 +2,41 @@ package com.sunny.pdf.pdfutility.code;
 
 public class MaxSumDigits {
     public String solution(String S) {
-        int n = S.length();
-        char[] chars = S.toCharArray();
+        char[] digits = S.toCharArray();
+        int n = digits.length;
 
-        // Traverse the string from the end to find the first non-zero digit to decrement
-        for (int i = n - 1; i >= 0; i--) {
-            if (chars[i] != '0') {
-                // Decrement this digit by 1
-                chars[i]--;
-                // Set all subsequent digits to '9'
-                for (int j = i + 1; j < n; j++) {
-                    chars[j] = '9';
-                }
-                // Convert back to string and handle any potential leading zeros
-                String result = new String(chars);
-                // Remove any leading zeros that may appear due to the decrement
-                result = result.replaceFirst("^0+(?!$)", "");
-                return result;
+        // Find the first digit that is greater than the next digit
+        int index = -1;
+        for (int i = 0; i < n - 1; i++) {
+            if (digits[i] > digits[i + 1]) {
+                index = i;
+                break;
             }
         }
 
-        // If we can't decrement any digit (e.g., "1"), the result is "0"
-        return "0";
+        // If no such digit found, return S
+        if (index == -1) {
+            return S;
+        }
+
+        // Decrement the digit found and replace subsequent digits with 9
+        digits[index] -= 1;
+        for (int i = index + 1; i < n; i++) {
+            digits[i] = '9';
+        }
+
+        // Remove leading zeroes if any
+        StringBuilder result = new StringBuilder();
+        boolean leadingZero = true;
+        for (char digit : digits) {
+            if (leadingZero && digit == '0') {
+                continue;
+            }
+            leadingZero = false;
+            result.append(digit);
+        }
+
+        return result.toString();
     }
 
     public static void main(String[] args) {
